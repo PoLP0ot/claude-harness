@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker-compose version *)",
+      "Bash(PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION=*)",
+      "Bash(command -v sqlite3)",
+      "Bash(sqlite3 */dev.db *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [{
+      "hooks": [{
+        "type": "command",
+        "command": "PROJECT_ROOT/scripts/claude-state.sh idle || true"
+      }]
+    }],
+    "UserPromptSubmit": [{
+      "hooks": [{
+        "type": "command",
+        "command": "PROJECT_ROOT/scripts/claude-state.sh working || true"
+      }]
+    }],
+    "PreToolUse": [{
+      "hooks": [{
+        "type": "command",
+        "command": "PROJECT_ROOT/scripts/claude-state.sh working || true"
+      }]
+    }],
+    "Stop": [{
+      "hooks": [{
+        "type": "command",
+        "command": "PROJECT_ROOT/scripts/claude-state.sh idle || true"
+      }]
+    }],
+    "Notification": [{
+      "matcher": "permission",
+      "hooks": [{
+        "type": "command",
+        "command": "PROJECT_ROOT/scripts/claude-state.sh prompt || true"
+      }]
+    }]
+  }
+}
