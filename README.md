@@ -9,10 +9,11 @@ Reusable `.claude/` configuration for AI-assisted development with Claude Code u
 - **`agents/`** — 7 expert agents: React frontend, Node backend, Python ML/LLM, UX designer, OpenTofu ops, config expert
 - **`hooks/`** — Security hooks: block dangerous commands, block secret file access
 - **`settings.json`** — Base permissions (allow git/npm/docker, deny .env/sudo/rm -rf)
-- **`settings.local.json.template`** — Hook-based state signaling for Hermes (PreToolUse/Stop/Notification → `/tmp/claude-state.json`)
+- **`settings.local.json.template`** — Hook-based state signaling for orchestrators (PreToolUse/Stop/Notification → `/tmp/claude-state.json`)
 - **`scripts/claude-state.sh`** — State signaling script called by hooks
 - **`scripts/install.sh`** — One-command install into any project
 - **`templates/CLAUDE.md`** — Project contract template
+- **`docs/`** — Harness concepts: memory model, gates, safety hooks, loops, instruction model, prompt caching, self-improvement
 
 ## Quick Install
 
@@ -23,10 +24,10 @@ git clone https://github.com/PoLP0ot/claude-harness.git /tmp/claude-harness
 
 Or via Hermes `hermes-project-init` (auto-clones and installs).
 
-## How it works with Hermes
+## How it works
 
 ```
-Hermes (PM)                    Claude Code (tmux, --dangerously-skip-permissions)
+Orchestrator (PM)               Claude Code (executor)
     │                                    │
     ├─ dispatches task ─────────────────→│
     │                                    ├─ PreToolUse hook → state=working
@@ -34,7 +35,7 @@ Hermes (PM)                    Claude Code (tmux, --dangerously-skip-permissions
     │                                    ├─ Stop hook → state=idle
     │←─ polls /tmp/claude-state.json ────┤
     │                                    │
-    ├─ QA gate (tests+tsc+build+visual)  │
+    ├─ QA gate (tests+build+visual)      │
     ├─ commit + push                     │
     └─ next task                         │
 ```
@@ -50,17 +51,17 @@ claude-harness/
 ├── rules/                         # 11 language/framework rules
 ├── agents/                        # 7 expert agent prompts
 ├── hooks/                         # Security hooks
+├── docs/                          # Harness concept docs
 ├── scripts/
 │   ├── install.sh                 # Install harness into a project
-│   └── claude-state.sh            # State signaling for Hermes
+│   └── claude-state.sh            # State signaling for orchestrator
 └── templates/
     └── CLAUDE.md                  # Project contract template
 ```
 
 ## Related
 
-- [Hermes Workshop Harness](https://github.com/PoLP0ot/hermes-workshop-harness) — Hermes profile for the full workflow
-- [harness-workflow skill](https://github.com/PoLP0ot/hermes-workshop-harness) — Universal project pipeline skill
+- [Hermes Workshop Harness](https://github.com/PoLP0ot/hermes-workshop-harness) — Full orchestrator + harness workflow with schemas, task packs, and run management
 
 ## License
 
