@@ -38,6 +38,10 @@ if [[ ! -f "$PROJECT/CLAUDE.md" ]]; then
   cp "$HARNESS_DIR/templates/CLAUDE.md" "$PROJECT/CLAUDE.md"
 fi
 
+# Deploy memory templates to ~/.claude/templates/project-memory/
+mkdir -p "$HOME/.claude/templates/project-memory"
+cp "$HARNESS_DIR/templates/project-memory/"*.md "$HOME/.claude/templates/project-memory/"
+
 echo "✓ Harness installed"
 echo "  Skills:   $(ls "$PROJECT/.claude/skills/" | wc -l)"
 echo "  Rules:    $(ls "$PROJECT/.claude/rules/" | wc -l)"

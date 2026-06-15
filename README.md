@@ -5,7 +5,7 @@ Reusable `.claude/` configuration for AI-assisted development with Claude Code u
 ## What's included
 
 - **`skills/`** — 17 Claude Code skills: React, Node.js, Python, Docker, Git, PR review, UX design, testing, etc.
-- **`rules/`** — 11 rules: TypeScript, Python, React, Docker, vitest, pytest, memory maintenance, etc.
+- **`rules/`** — 12 rules: TypeScript, Python, React, Docker, vitest, pytest, memory maintenance, project docs, etc.
 - **`agents/`** — 7 expert agents: React frontend, Node backend, Python ML/LLM, UX designer, OpenTofu ops, config expert
 - **`hooks/`** — Security hooks: block dangerous commands, block secret file access
 - **`settings.json`** — Base permissions (allow git/npm/docker, deny .env/sudo/rm -rf)
@@ -13,6 +13,7 @@ Reusable `.claude/` configuration for AI-assisted development with Claude Code u
 - **`scripts/claude-state.sh`** — State signaling script called by hooks
 - **`scripts/install.sh`** — One-command install into any project
 - **`templates/CLAUDE.md`** — Project contract template
+- **`templates/project-memory/`** — 7 memory file templates deployed to `~/.claude/templates/project-memory/`
 - **`docs/`** — Harness concepts: memory model, gates, safety hooks, loops, instruction model, prompt caching, self-improvement
 
 ## Quick Install
@@ -48,7 +49,7 @@ claude-harness/
 ├── settings.json                  # Base permissions
 ├── settings.local.json.template   # Hook config (PROJECT_ROOT placeholder)
 ├── skills/                        # 17 Claude Code skills
-├── rules/                         # 11 language/framework rules
+├── rules/                         # 12 language/framework rules
 ├── agents/                        # 7 expert agent prompts
 ├── hooks/                         # Security hooks
 ├── docs/                          # Harness concept docs
@@ -56,7 +57,8 @@ claude-harness/
 │   ├── install.sh                 # Install harness into a project
 │   └── claude-state.sh            # State signaling for orchestrator
 └── templates/
-    └── CLAUDE.md                  # Project contract template
+    ├── CLAUDE.md                  # Project contract template
+    └── project-memory/            # 7 memory file templates
 ```
 
 ## Related
